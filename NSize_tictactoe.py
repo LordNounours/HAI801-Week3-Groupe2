@@ -3,7 +3,7 @@ Tic Tac Toe Player
 """
 
 import math
-import numpy as np
+import time
 
 X = "X"
 O = "O"
@@ -139,7 +139,7 @@ def max_value(board, alpha, beta, ite):
     using alpha-beta pruning.
     """
     # If the depth limit is reached, return the utility of the board
-    if ite > 6:
+    if ite > 3:
         return utility(board)
     if terminal(board):
         return utility(board)
@@ -157,7 +157,7 @@ def min_value(board, alpha, beta, ite):
     using alpha-beta pruning.
     """
     # If the depth limit is reached, return the utility of the board
-    if ite > 6:
+    if ite > 3:
         return utility(board)
     if terminal(board):
         return utility(board)
@@ -209,6 +209,7 @@ if __name__ == "__main__":
       exit()
     lines = file.readlines()
     # For each board state, run the minimax algorithm
+    start = time.time()
     for line in lines:
         k = 1
         for i in range(SIZE):
@@ -229,3 +230,6 @@ if __name__ == "__main__":
             print(grid)
         print("Winner: ", winner(board))
         print(" ----------------- ")
+    end = time.time()
+    length = end - start
+    print("Time taken: ", length, " seconds")
